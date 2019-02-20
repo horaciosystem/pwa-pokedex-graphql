@@ -7,21 +7,18 @@ import pokemonsQuery from "./pokemonsQuery";
 import PokemonCard from "./PokemonCard";
 
 const GridContainer = styled(Grid)`
+  justify-content: center;
   column-gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-auto-rows: auto;
 `;
 
 function PokemonList(props) {
-  let { data, error, loading } = useQuery(pokemonsQuery, {
+  let { data, loading } = useQuery(pokemonsQuery, {
     variables: { first: 100 }
   });
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (loading) {
+  if (loading && !data.pokemons) {
     return <span>Loading...</span>;
   }
 

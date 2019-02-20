@@ -1,24 +1,44 @@
 import React from "react";
 import { useQuery } from "react-apollo-hooks";
+import { styled, Flex, Image, Heading, List } from "reakit";
 import pokemonQuery from "./pokemonQuery";
 
+const TypesContainer = styled(Flex)`
+  span + span {
+    margin-left: 1rem;
+  }
+`;
+
 function PokemonDetails({ pokemonName }) {
-  let { data, error, loading } = useQuery(pokemonQuery, {
+  let { data, loading } = useQuery(pokemonQuery, {
     variables: { name: pokemonName }
   });
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (loading) {
+  if (loading && !data.pokemon) {
     return <span>Loading...</span>;
   }
 
   let {
-    pokemon: { name }
+    pokemon: { name, image, types, attacks }
   } = data;
-  return <span>{name}</span>;
+
+  return (
+    <Flex flexDirection="column" alignItems="center">
+      <Heading>{name}</Heading>
+      <Image src={image} width={300} height={300} />
+      <TypesContainer>
+        {types.map(type => (
+          <span>{type}</span>
+        ))}
+      </TypesContainer>
+      <Heading as="h3">Attacks</Heading>
+      <List>
+        {attacks.special.map(it => (
+          <li>{it.name}</li>
+        ))}
+      </List>
+    </Flex>
+  );
 }
 
 export default PokemonDetails;

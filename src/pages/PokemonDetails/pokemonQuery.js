@@ -7,6 +7,7 @@ export default gql`
       image
       number
       name
+      types
       attacks {
         special {
           name

@@ -943,7 +943,7 @@
     "@types/unist" "*"
     "@types/vfile-message" "*"
 
-"@types/zen-observable@^0.8.0":
+"@types/zen-observable@0.8.0", "@types/zen-observable@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.0.tgz#8b63ab7f1aa5321248aad5ac890a485656dcea4d"
   integrity sha512-te5lMAWii1uEJ4FwLjzdlbw3+n0FZNOvFXHxQDKeT0dilh7HOzdMzV2TrJVUzq8ep7J4Na8OUYPRLSQkJHAlrg==
@@ -1244,6 +1244,11 @@ apollo-cache-inmemory@^1.4.3:
     optimism "^0.6.9"
     tslib "^1.9.3"
 
+apollo-cache-persist@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/apollo-cache-persist/-/apollo-cache-persist-0.1.1.tgz#e6cfe1983b998982a679aaf05241d3ed395edb1e"
+  integrity sha512-/7GAyblPR169ryW3ugbtHqiU0UGkhIt10NeaO2gn2ClxjLHF/nIkJD5mx/0OCF2vLNbbnzLZVDeIO1pf72TrEA==
+
 apollo-cache@1.1.26, apollo-cache@^1.1.26:
   version "1.1.26"
   resolved "https://registry.yarnpkg.com/apollo-cache/-/apollo-cache-1.1.26.tgz#5afe023270effbc2063d90f51d8e56bce274ab37"
@@ -1287,6 +1292,14 @@ apollo-link-http@^1.5.11:
   dependencies:
     apollo-link "^1.2.8"
     apollo-link-http-common "^0.2.10"
+
+apollo-link-retry@^2.2.10:
+  version "2.2.10"
+  resolved "https://registry.yarnpkg.com/apollo-link-retry/-/apollo-link-retry-2.2.10.tgz#cd9483929b2c6db757441415a3bd9e1f147d9254"
+  integrity sha512-GF4pRjg03cYfPT/q0fvp6BDg6n1CHIkKESdSUIyOUFPjx6QapQfl5z6MPrmGNL5M3SYIE9zgA0+4P5zg/aF5Ew==
+  dependencies:
+    "@types/zen-observable" "0.8.0"
+    apollo-link "^1.2.8"
 
 apollo-link@^1.0.0, apollo-link@^1.2.8:
   version "1.2.8"

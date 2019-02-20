@@ -28,13 +28,13 @@ function PokemonDetails({ pokemonName }) {
       <Image src={image} width={300} height={300} />
       <TypesContainer>
         {types.map(type => (
-          <span>{type}</span>
+          <span key={type}>{type}</span>
         ))}
       </TypesContainer>
       <Heading as="h3">Attacks</Heading>
       <List>
         {attacks.special.map(it => (
-          <li>{it.name}</li>
+          <li key={it.name}>{it.name}</li>
         ))}
       </List>
     </Flex>

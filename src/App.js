@@ -1,7 +1,7 @@
 import React from "react";
 import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import { Router } from "@reach/router";
-import apolloClient, { loadCache } from "lib/apolloClient";
+import setupApolloClient from "lib/setupApolloClient";
 import { Provider as ThemeProvider } from "reakit";
 import theme from "theme";
 import PokemonList from "pages/PokemonList";
@@ -10,16 +10,18 @@ import PokemonDetails from "pages/PokemonDetails";
 class App extends React.Component {
   state = {
     error: null,
-    loaded: false
+    loaded: false,
+    apolloClient: null
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     try {
-      await loadCache();
+      setupApolloClient().then(apolloClient => {
+        this.setState({ apolloClient, loaded: true });
+      });
     } catch (error) {
       console.error("Error restoring Apollo cache", error);
-    } finally {
-      this.setState({ loaded: true });
+      this.setState({ error });
     }
   }
 
@@ -28,7 +30,7 @@ class App extends React.Component {
   }
 
   render() {
-    let { error, loaded } = this.state;
+    let { error, loaded, apolloClient } = this.state;
 
     if (!loaded) {
       return <div>Loading cache...</div>;

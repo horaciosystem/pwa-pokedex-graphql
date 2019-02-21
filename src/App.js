@@ -6,6 +6,7 @@ import { Provider as ThemeProvider } from "reakit";
 import theme from "theme";
 import PokemonList from "pages/PokemonList";
 import PokemonDetails from "pages/PokemonDetails";
+import NetworkStatusMonitor from "common/NetworkStatusMonitor";
 
 class App extends React.Component {
   state = {
@@ -41,14 +42,16 @@ class App extends React.Component {
     }
 
     return (
-      <ApolloHooksProvider client={apolloClient}>
-        <ThemeProvider theme={theme}>
-          <Router>
-            <PokemonList path="/" />
-            <PokemonDetails path="/pokemons/:pokemonName" />
-          </Router>
-        </ThemeProvider>
-      </ApolloHooksProvider>
+      <NetworkStatusMonitor>
+        <ApolloHooksProvider client={apolloClient}>
+          <ThemeProvider theme={theme}>
+            <Router>
+              <PokemonList path="/" />
+              <PokemonDetails path="/pokemons/:pokemonName" />
+            </Router>
+          </ThemeProvider>
+        </ApolloHooksProvider>
+      </NetworkStatusMonitor>
     );
   }
 }

@@ -17,7 +17,7 @@ export default async function setupApolloClient() {
   });
 
   let link = concat(retry, http);
-
+  console.warn(link);
   let persistor = new CachePersistor({
     cache,
     storage: localStorage,

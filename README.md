@@ -1,68 +1,30 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# A Progressive Web App Pokédex
 
-## Available Scripts
+##Inspiration
+This app is a prove of concept to make a react-apollo app works offline.
+I had the inspiration in the awesome Pokédex https://github.com/nolanlawson/pokedex.org#readme by Nolan Lawson.
 
-In the project directory, you can run:
+##Stack highlights
 
-### `npm start`
+- Create-React-App;
+- Reactjs;
+- Apollo GraphQL;
+- apollo-cache-persist;
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+###Doubts I had during the development
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+1. Purge cache if the API schema has been changed;
+   A= https://github.com/apollographql/apollo-cache-persist#ive-had-a-breaking-schema-change-how-do-i-migrate-or-purge-my-cache
 
-### `npm test`
+2. Notify users that app is offline and data is not fresh;
+   A= https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/onLine
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. When purge the cache ?
+   A= It depends.
+   Consider the apollo-cache-persist API,
 
-### `npm run build`
+   - We can do it automatically after some time;
+   - Have a button to user trigger the refresh that basically does purge the cache and call the refetch from the current apollo query.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+4. Caching assets on service worker and how to update them?
+   A. Create-React-App already handles the manifest and the generated assets for the app.

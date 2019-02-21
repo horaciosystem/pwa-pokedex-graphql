@@ -11,13 +11,12 @@ const SCHEMA_VERSION_KEY = "apollo-schema-version";
 export default async function setupApolloClient() {
   let cache = new InMemoryCache();
   let localStorage = window.localStorage;
-  let retry = new RetryLink({ attempts: { max: Infinity } });
+  let retry = new RetryLink({ attempts: { max: 5 } });
   let http = new HttpLink({
     uri: process.env.REACT_APP_GRAPHQL_API_URL
   });
 
   let link = concat(retry, http);
-  console.warn(link);
   let persistor = new CachePersistor({
     cache,
     storage: localStorage,

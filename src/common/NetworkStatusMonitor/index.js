@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 function NetworkStatusMonitor({ children }) {
   let [online, setOnline] = useState(true);
-  console.log(online);
 
   let updateNetworkStatus = () => {
     setOnline(navigator.onLine);
@@ -23,7 +22,7 @@ function NetworkStatusMonitor({ children }) {
   } else {
     return (
       <>
-        <div>You're offline!</div>
+        <div>You're offline</div>
         {children}
       </>
     );

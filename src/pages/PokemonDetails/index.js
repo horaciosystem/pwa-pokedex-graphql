@@ -10,9 +10,13 @@ const TypesContainer = styled(Flex)`
 `;
 
 function PokemonDetails({ pokemonName }) {
-  let { data, loading } = useQuery(pokemonQuery, {
+  let { error, data, loading } = useQuery(pokemonQuery, {
     variables: { name: pokemonName }
   });
+
+  if (error) {
+    throw error;
+  }
 
   if (loading && !data.pokemon) {
     return <span>Loading...</span>;

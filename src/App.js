@@ -7,10 +7,10 @@ import theme from "theme";
 import PokemonList from "pages/PokemonList";
 import PokemonDetails from "pages/PokemonDetails";
 import NetworkStatusMonitor from "common/NetworkStatusMonitor";
+import ErrorBoundary from "common/ErrorBoundary";
 
 class App extends React.Component {
   state = {
-    error: null,
     loaded: false,
     apolloClient: null
   };
@@ -22,35 +22,28 @@ class App extends React.Component {
       });
     } catch (error) {
       console.error("Error restoring Apollo cache", error);
-      this.setState({ error });
     }
   }
 
-  componentDidCatch(error) {
-    this.setState({ error });
-  }
-
   render() {
-    let { error, loaded, apolloClient } = this.state;
+    let { loaded, apolloClient } = this.state;
 
     if (!loaded) {
       return <div>Loading cache...</div>;
     }
 
-    if (error) {
-      return <div>{error}</div>;
-    }
-
     return (
       <NetworkStatusMonitor>
-        <ApolloHooksProvider client={apolloClient}>
-          <ThemeProvider theme={theme}>
-            <Router>
-              <PokemonList path="/" />
-              <PokemonDetails path="/pokemons/:pokemonName" />
-            </Router>
-          </ThemeProvider>
-        </ApolloHooksProvider>
+        <ErrorBoundary>
+          <ApolloHooksProvider client={apolloClient}>
+            <ThemeProvider theme={theme}>
+              <Router>
+                <PokemonList path="/" />
+                <PokemonDetails path="/pokemons/:pokemonName" />
+              </Router>
+            </ThemeProvider>
+          </ApolloHooksProvider>
+        </ErrorBoundary>
       </NetworkStatusMonitor>
     );
   }

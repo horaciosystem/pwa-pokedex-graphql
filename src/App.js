@@ -1,6 +1,6 @@
 import React from "react";
 import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
-import { Router } from "@reach/router";
+import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import setupApolloClient from "lib/setupApolloClient";
 import { Provider as ThemeProvider } from "reakit";
 import theme from "theme";
@@ -38,8 +38,14 @@ class App extends React.Component {
           <ApolloHooksProvider client={apolloClient}>
             <ThemeProvider theme={theme}>
               <Router>
-                <PokemonList path="/" />
-                <PokemonDetails path="/pokemons/:pokemonName" />
+                <Switch>
+                  <Route exact path="/" component={PokemonList} />
+                  <Route
+                    path="/pokemons/:pokemonName"
+                    component={PokemonDetails}
+                  />
+                  <Route render={() => "Not Found"} />
+                </Switch>
               </Router>
             </ThemeProvider>
           </ApolloHooksProvider>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-apollo-hooks";
 import { styled, Grid } from "reakit";
-import { Link } from "@reach/router";
+import { Link } from "react-router-dom";
 import MainColumn from "common/MainColumn";
 import pokemonsQuery from "./pokemonsQuery";
 import PokemonCard from "./PokemonCard";

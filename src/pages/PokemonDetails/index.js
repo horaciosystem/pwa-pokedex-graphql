@@ -9,7 +9,11 @@ const TypesContainer = styled(Flex)`
   }
 `;
 
-function PokemonDetails({ pokemonName }) {
+function PokemonDetails({
+  match: {
+    params: { pokemonName }
+  }
+}) {
   let { error, data, loading } = useQuery(pokemonQuery, {
     variables: { name: pokemonName }
   });

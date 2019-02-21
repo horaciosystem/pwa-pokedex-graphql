@@ -15,7 +15,7 @@ function PokemonDetails({ pokemonName }) {
   });
 
   if (error) {
-    throw error;
+    return <div>This resource is not accessible</div>;
   }
 
   if (loading && !data.pokemon) {

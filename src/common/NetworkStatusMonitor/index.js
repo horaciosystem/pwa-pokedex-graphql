@@ -15,7 +15,7 @@ function NetworkStatusMonitor({ children }) {
       window.removeEventListener("online", updateNetworkStatus);
       window.removeEventListener("offline", updateNetworkStatus);
     };
-  });
+  }, []);
 
   if (online) {
     return children;

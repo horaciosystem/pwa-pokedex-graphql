@@ -51,6 +51,6 @@ export default async function setupApolloClient() {
 }
 
 function isCacheExpired(lastUpdate) {
-  let differenceInMilli = Date.now() - new Date(lastUpdate);
-  return differenceInMilli / 1000 / 60 >= UPDATE_INTERVAL_MINUTES;
+  let differenceInMilliseconds = Date.now() - new Date(lastUpdate);
+  return differenceInMilliseconds / 1000 / 60 >= UPDATE_INTERVAL_MINUTES;
 }

@@ -8,6 +8,7 @@ import PokemonList from "pages/PokemonList";
 import PokemonDetails from "pages/PokemonDetails";
 import NetworkStatusMonitor from "common/NetworkStatusMonitor";
 import ErrorBoundary from "common/ErrorBoundary";
+import PurgeCacheMonitor from "common/PurgeCacheMonitor";
 
 class App extends React.Component {
   state = {
@@ -38,14 +39,16 @@ class App extends React.Component {
           <ApolloHooksProvider client={apolloClient}>
             <ThemeProvider theme={theme}>
               <Router>
-                <Switch>
-                  <Route exact path="/" component={PokemonList} />
-                  <Route
-                    path="/pokemons/:pokemonName"
-                    component={PokemonDetails}
-                  />
-                  <Route render={() => "Not Found"} />
-                </Switch>
+                <PurgeCacheMonitor>
+                  <Switch>
+                    <Route exact path="/" component={PokemonList} />
+                    <Route
+                      path="/pokemons/:pokemonName"
+                      component={PokemonDetails}
+                    />
+                    <Route render={() => "Not Found"} />
+                  </Switch>
+                </PurgeCacheMonitor>
               </Router>
             </ThemeProvider>
           </ApolloHooksProvider>

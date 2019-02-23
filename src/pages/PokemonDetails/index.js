@@ -15,7 +15,8 @@ function PokemonDetails({
   }
 }) {
   let { error, data, loading } = useQuery(pokemonQuery, {
-    variables: { name: pokemonName }
+    variables: { name: pokemonName },
+    notifyOnNetworkStatusChange: true
   });
 
   if (error) {

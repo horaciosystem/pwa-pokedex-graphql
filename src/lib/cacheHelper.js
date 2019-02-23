@@ -1,5 +1,5 @@
 const LAST_UPDATE = "last-update";
-const UPDATE_INTERVAL_MINUTES = 1;
+const UPDATE_INTERVAL_MINUTES = 5;
 
 export default {
   expired() {

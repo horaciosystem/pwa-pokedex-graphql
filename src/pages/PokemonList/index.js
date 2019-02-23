@@ -15,7 +15,8 @@ const GridContainer = styled(Grid)`
 
 function PokemonList(props) {
   let { error, data, loading } = useQuery(pokemonsQuery, {
-    variables: { first: 100 }
+    variables: { first: 100 },
+    notifyOnNetworkStatusChange: true
   });
 
   if (error) {

@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 
 function PurgeCacheMonitor({ children, ...props }) {
   let client = useApolloClient();
-  console.log(client);
+
   useEffect(() => {
     return props.history.listen(() => {
       if (navigator.onLine && cache.expired()) {

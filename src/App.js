@@ -17,13 +17,13 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    try {
-      setupApolloClient().then(apolloClient => {
+    setupApolloClient()
+      .then(apolloClient => {
         this.setState({ apolloClient, loaded: true });
+      })
+      .catch(error => {
+        console.error("Error restoring Apollo cache", error);
       });
-    } catch (error) {
-      console.error("Error restoring Apollo cache", error);
-    }
   }
 
   render() {

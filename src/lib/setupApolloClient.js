@@ -33,7 +33,7 @@ export default async function setupApolloClient() {
       // we're good to go and can restore the cache.
       localStorage.setItem(SCHEMA_VERSION_KEY, SCHEMA_VERSION);
       resolve(persistor.restore());
-    } else {
+    } else if (navigator.onLine) {
       // Otherwise, we'll want to purge the outdated persisted cache
       // and mark ourselves as having updated to the latest version.
       localStorage.setItem(SCHEMA_VERSION_KEY, SCHEMA_VERSION);
